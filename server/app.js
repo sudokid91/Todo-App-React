@@ -7,14 +7,15 @@ const mongoose = require('mongoose');
 
 // const productRoutes = require('./api/routes/products');
 // const orderRoutes = require('./api/routes/order');
-// const userRoutes = require('./api/routes/user');
+const userRoutes = require('./api/routes/user');
+const todoRoutes = require('./api/routes/todo');
 
 mongoose.connect('mongodb+srv://admin:cMefVOUAeETxn3TZ@cluster0-6cyao.mongodb.net/sudokid?retryWrites=true',{ useNewUrlParser: true });
 
 mongoose.Promise = global.Promise;
 
 app.use(morgan('dev'));
-// app.use(express.static(__dirname,'dist'));
+app.use(express.static(__dirname+'/public'));
 // app.use('/uploads', express.static('uploads'));
 app.use(bodyParser.urlencoded({ extended : false}));
 app.use(bodyParser.json());
@@ -31,7 +32,8 @@ app.use((req, res, next) => {
 
 // app.use('/products', productRoutes);
 // app.use('/orders', orderRoutes);
-// app.use('/user', userRoutes);
+app.use('/todos', todoRoutes);
+app.use('/user', userRoutes);
 
 app.use((req, res, next) => {
     const error = new Error('Not found');

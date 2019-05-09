@@ -4,7 +4,7 @@ import {
   deleteTodo,
   toggleTodo,
   setVisibilityFilter
-} from "../actions/actionCreator";
+} from "../actions/index";
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from "../actions/actionTypes";
 import { bindActionCreators } from "redux";
 

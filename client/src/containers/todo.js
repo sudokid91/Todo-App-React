@@ -1,7 +1,8 @@
-import React, {Component} from 'react'
-import { connect } from 'react-redux'
-import { addTodo } from '../actions/actionCreator'
-import {bindActionCreators} from 'redux'
+import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import { addTodo } from '../actions/index';
+import { fetchTodosAction, fetchSuccessAction, fetchFaildAction} from '../actions';
+import {bindActionCreators} from 'redux';
 
 class Todo extends Component {
     constructor(props){
@@ -23,8 +24,9 @@ class Todo extends Component {
                   <div className="form-group row">
                     <div className="col-sm-10">
                       <input onChange={this.onChangeTodoText} value={this.state.todotext} type="text" className="form-control" id="inputEmail3" placeholder="add todo here"/>
-                      <button type="button" onClick={ () => this.setState({ todotext: '' }) } style={{marginTop: "25px", marginRight: "15px"}} className="btn btn-danger">Cancel</button>
+                      <button type="button" onClick={() =>{ this.props.fetchTodosAction('asc')} } style={{marginTop: "25px"}} className="btn btn-success">Fetch todos</button>
                       <button type="button" onClick={() =>{ this.props.addTodo(this.state.todotext); this.setState({ todotext: '' }) } } style={{marginTop: "25px"}} className="btn btn-success">Add Todo</button>
+                      <button type="button" onClick={ () => this.setState({ todotext: '' }) } style={{marginTop: "25px", marginRight: "15px"}} className="btn btn-danger">Cancel</button>
                     </div>
                   </div>
         );
@@ -33,10 +35,18 @@ class Todo extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        addTodo
+        addTodo,
+        fetchTodosAction
     }, dispatch)
 }
 
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//       onFetchTodos: () => {
+//         dispatch(fetchTodosAction());
+//       }
+//     }
+//   }
 
 
 export default connect(null, mapDispatchToProps)(Todo)

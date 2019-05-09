@@ -1,9 +1,13 @@
-import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO} from '../actions/actionTypes';
-
+import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO, FETCH_SUCCESSED} from '../actions/actionTypes';
+import { fetchTodosAction, fetchSuccessAction, fetchFaildAction} from '../actions';
 const INITIAL_DATA = []
 
 const TodoReducer = (state=INITIAL_DATA, action) => {
     switch (action.type){
+        case FETCH_SUCCESSED :
+            return action.receivedTodos;
+        case FETCH_SUCCESSED :
+            return state;
 
         case ADD_TODO:
             return [

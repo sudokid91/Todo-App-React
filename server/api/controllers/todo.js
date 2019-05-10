@@ -20,7 +20,6 @@ exports.get_todos = (req, res, next) => {
                     }
                 })
             }
-            // console.log('Get all products from db: '+response);
             if(docs.length > 0){
                 res.status(200).json(response);
             } else {
